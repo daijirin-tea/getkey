@@ -1,0 +1,7 @@
+scoreboard objectives add getkey_depth dummy
+scoreboard objectives add getkey_in_string dummy
+scoreboard objectives add getkey_string_type dummy
+scoreboard objectives add getkey_is_escaped dummy
+scoreboard objectives add getkey_is_reading_key dummy
+scoreboard objectives add getkey_success dummy
+scoreboard objectives add getkey_count dummy

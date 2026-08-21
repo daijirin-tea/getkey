@@ -1,0 +1,1 @@
+execute if score $getkey getkey_is_reading_key matches 1 run data modify storage getkey: w.data.current_key append from storage getkey: w.data.char
