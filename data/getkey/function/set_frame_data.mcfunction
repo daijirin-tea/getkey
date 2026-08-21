@@ -1,0 +1,1 @@
+data modify storage getkey: w set from storage getkey: frames[-1]
