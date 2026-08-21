@@ -1,0 +1,2 @@
+execute if data storage nbtstringify: w.data.input.extra[] run return run function nbtstringify:join_text_component/compound/extra_exist
+data modify storage nbtstringify: w.data.output set from storage nbtstringify: w.data.input.text

@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:command",
+    "pools": [
+        {
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "name": "minecraft:stick",
+                    "functions": [
+                        {
+                            "function": "minecraft:set_name",
+                            "entity": "this",
+                            "name": {
+                                "storage": "nbtstringify:",
+                                "nbt": "w.data.input"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

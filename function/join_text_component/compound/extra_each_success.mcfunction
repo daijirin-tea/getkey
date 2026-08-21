@@ -1,0 +1,18 @@
+function nbtstringify:save_frame
+
+data modify storage nbtstringify: temporary set from storage nbtstringify: w
+
+data remove storage nbtstringify: w
+data modify storage nbtstringify: w.input set from storage nbtstringify: temporary.data.extra_item
+
+data modify storage nbtstringify: frames append from storage nbtstringify: w
+function nbtstringify:join_text_component/main
+
+data modify storage nbtstringify: temporary.data.output set from storage nbtstringify: w.output
+data remove storage nbtstringify: frames[-1]
+function nbtstringify:set_frame
+
+data modify storage nbtstringify: w.data.child_input append from storage nbtstringify: temporary.data.output
+
+
+function nbtstringify:join_text_component/compound/extra_each
