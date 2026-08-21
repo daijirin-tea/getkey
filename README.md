@@ -10,20 +10,20 @@ NBTを用いた関数群の入出力
 
 ## インストール方法
 
-このデータパックは依存関係があるため、`git submodule`で取得します。
+リポジトリをクローンするだけで、依存パッケージも含めて取得できます。
 
 ```bash
-# 依存パッケージも含めて取得
-git submodule add https://github.com/daijirin-tea/getkey.git getkey
-git submodule update --init --recursive
+git clone https://github.com/daijirin-tea/getkey.git
 ```
 
-または、依存パッケージを個別に追加します。
+依存パッケージを更新する場合は、`git subtree pull`を使用します。
 
 ```bash
-# 依存パッケージを data/ に追加
-git submodule add https://github.com/daijirin-tea/StandardStringManipulator.git data/ssm
-git submodule add https://github.com/daijirin-tea/NBTStringify.git data/nbtstringify
+# StandardStringManipulator を更新
+git subtree pull --prefix=data/ssm https://github.com/daijirin-tea/StandardStringManipulator.git ssm-only --squash
+
+# NBTStringify を更新
+git subtree pull --prefix=data/nbtstringify https://github.com/daijirin-tea/NBTStringify.git nbtstringify-only --squash
 ```
 
 ## 使い方
