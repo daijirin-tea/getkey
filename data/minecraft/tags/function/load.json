@@ -1,5 +1,7 @@
 {
     "values": [
-        "getkey:load"
+        "getkey:load",
+        "nbtstringify:load",
+        "ssm:load"
     ]
 }
