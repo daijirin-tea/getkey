@@ -1,0 +1,3 @@
+scoreboard players reset $nbtstringify nbtstringify_success
+scoreboard players reset $nbtstringify nbtstringify_type
+scoreboard players reset $nbtstringify nbtstringify_extra

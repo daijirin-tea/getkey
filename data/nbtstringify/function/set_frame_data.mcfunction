@@ -1,0 +1,1 @@
+data modify storage nbtstringify: w set from storage nbtstringify: frames[-1]
