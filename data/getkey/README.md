@@ -1,61 +1,53 @@
 # getkey
 
-コンパウンドのキーを取得するデータパックです。
+NBTコンパウンドからキー名を取り出すデータパックです。キー名だけの配列、または後続処理で扱いやすいコンパウンド配列を取得できます。
 
-## 基本概念
+## 前提: フレーム
 
-### [frame](https://github.com/daijirin-tea/my-mc-concepts/tree/main/concepts/frame)
+入出力は `storage getkey: frames[-1]` に置きます。呼び出し前にフレームを追加し、結果を読んだ後は呼び出し元で削除してください。フレームを積むため、別のフレーム方式APIをネストしても入出力が衝突しません。
 
-NBTを用いた関数群の入出力
-
-## インストール方法
-
-リポジトリをクローンするだけで、依存パッケージも含めて取得できます。
-
-```bash
-git clone https://github.com/daijirin-tea/getkey.git
-```
-
-依存パッケージを更新する場合は、`git subtree pull`を使用します。
-
-```bash
-# StandardStringManipulator を更新
-git subtree pull --prefix=data/ssm https://github.com/daijirin-tea/StandardStringManipulator.git ssm-only --squash
-
-# NBTStringify を更新
-git subtree pull --prefix=data/nbtstringify https://github.com/daijirin-tea/NBTStringify.git nbtstringify-only --squash
-```
-
-## 使い方
-
-`storage getkey: frames[-1].input` にコンパウンドを設定し、関数を実行します。
+## 最短の使用例
 
 ```mcfunction
-# 入力
-data modify storage getkey: frames[-1].input set value {foo: 1b, bar: "text", baz: {nested: 1}}
+# 入力用フレームを作成
+data modify storage getkey: w set value {input:{foo:1b,bar:"text",baz:{nested:1}}}
+data modify storage getkey: frames append from storage getkey: w
 
-# 関数を実行
+# キー名の配列を取得
 function getkey:get/main
 
-# 出力
-# storage getkey: frames[-1].output = ["foo", "bar", "baz"]
+# 出力: ["foo","bar","baz"]
+tellraw @a {nbt:"frames[-1].output",storage:"getkey:"}
+
+# 後片付け
+data remove storage getkey: frames[-1]
 ```
 
 ## API
 
 ### `getkey:get/main`
 
-コンパウンドのキーを取得します。
+キー名だけの文字列リストを返します。
 
-- `@input storage getkey: frames[-1].input: compound`
-- `@output storage getkey: frames[-1].output: string[]`
+| 項目 | 場所 | 型 |
+| --- | --- | --- |
+| 入力 | `storage getkey: frames[-1].input` | `compound` |
+| 出力 | `storage getkey: frames[-1].output` | `string[]` |
 
 ### `getkey:get2/main`
 
-コンパウンドのキーを取得します。
+各キーを `{key:"..."}` 形式のコンパウンドにして返します。キーごとに追加情報を持たせる処理へ渡す場合に向いています。
 
-- `@input storage getkey: frames[-1].input: compound`
-- `@output storage getkey: frames[-1].output: {key:string}[]`
+| 項目 | 場所 | 型 |
+| --- | --- | --- |
+| 入力 | `storage getkey: frames[-1].input` | `compound` |
+| 出力 | `storage getkey: frames[-1].output` | `{key:string}[]` |
+
+## 注意事項
+
+- 公開APIは `main` 関数だけです。その他の関数は内部実装のため、直接呼び出さないでください。
+- 空のコンパウンドは空のリストを返します。
+- `frames[-1]` が存在しない状態で呼び出すと、期待どおりに動作しません。
 
 ## 依存関係
 

@@ -2,9 +2,9 @@
   "pack": {
     "description": "Get keys of compound",
     "min_format": [
-      107,
+      121,
       1
     ],
-    "max_format": 107
+    "max_format": 121
   }
 }
