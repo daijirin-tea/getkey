@@ -8,7 +8,7 @@
 function nbtstringify:set_frame_data
 data modify storage nbtstringify: w.data.input set from storage nbtstringify: w.input
 
-execute positioned ~ -100000 ~ summon armor_stand run function nbtstringify:stringify/get_item
+execute positioned ~ -100000 ~ summon text_display run function nbtstringify:stringify/get_item
 
 data modify storage nbtstringify: w.output set from storage nbtstringify: w.data.output
 function nbtstringify:save_frame_data
